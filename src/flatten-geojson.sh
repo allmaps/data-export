@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-jq 'include "./src/map-id"; include "./src/parse-url";
+jq --stream 'include "./src/map-id"; include "./src/parse-url";
 {
   type: "FeatureCollection",
   features: [.features[] | {
