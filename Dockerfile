@@ -9,6 +9,10 @@ RUN cd tippecanoe \
   && make \
   && make install
 
+COPY config/* /allmaps/config/
+COPY src/* /allmaps/src/
+COPY data/* /allmaps/data/
+
 WORKDIR /allmaps
 
 ENTRYPOINT ["src/run.sh"]
