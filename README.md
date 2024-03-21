@@ -5,22 +5,22 @@ This repository contains a Dockerfile and scripts to export Allmaps data as GeoJ
 Build container:
 
 ```sh
-docker-compose build
+docker build .
 ```
 
 Run container:
 
 ```sh
-docker-compose up
+docker run .
 ```
 
 Run bash in container:
 
 ```
-docker run --rm -it --entrypoint bash data-export_allmaps-data-export
+docker run --rm -it --entrypoint bash allmaps-data-export
 ```
 
-To run the containr, the following environment variables must be present. For local development, you can create a .env file that contains these variables.
+To run the containr, the following environment variables must be present. For local development, you can create a `.env` file that contains these variables.
 
 - `ALLMAPS_API_KEY`
 - `RCLONE_CONFIG_R2_ACCESS_KEY_ID`
