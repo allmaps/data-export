@@ -21,10 +21,10 @@ rm ./data/maps-flattened.geojson
 # JSON & NDJSON
 # =============================================================================
 
-# wget "https://api.allmaps.org/maps?key=$ALLMAPS_API_KEY&limit=-1" \
-#   -O ./data/maps.json
+wget "https://api.allmaps.org/maps?key=$ALLMAPS_API_KEY&limit=-1" \
+  -O ./data/maps.json
 
-# cat ./data/maps.json | jq -c '.[]' > ./data/maps.ndjson
+cat ./data/maps.json | jq -c '.[]' > ./data/maps.ndjson
 
 # =============================================================================
 # Upload to R2 using rclone
