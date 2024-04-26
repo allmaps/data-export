@@ -7,6 +7,8 @@
 wget "https://annotations.allmaps.org/maps.geojson?key=$ALLMAPS_API_KEY&limit=-1" \
   -O ./data/maps.geojson
 
+# TODO: add newline-delimited GeoJSON
+
 cat ./data/maps.geojson | ./src/flatten-geojson.sh > ./data/maps-flattened.geojson
 
 tippecanoe -f -zg --projection=EPSG:4326 --drop-densest-as-needed \
@@ -30,7 +32,8 @@ cat ./data/maps.json | jq -c '.[]' > ./data/maps.ndjson
 # Georeference Annotations
 # =============================================================================
 
-# TODO
+wget "https://annotations.allmaps.org/maps?key=$ALLMAPS_API_KEY&limit=-1" \
+  -O ./data/annotations.json
 
 # =============================================================================
 # Upload to R2 using rclone
