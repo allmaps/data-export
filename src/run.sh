@@ -7,11 +7,13 @@
 wget "https://annotations.allmaps.org/maps.geojson?key=$ALLMAPS_API_KEY&limit=-1" \
   -O ./data/maps.geojson
 
-# TODO: add newline-delimited GeoJSON
+cat ./data/maps.geojson | jq -c '.features[]' > data/maps.geojsonl
 
 cat ./data/maps.geojson | ./src/flatten-geojson.sh > ./data/maps-flattened.geojson
 
-tippecanoe -f -zg --projection=EPSG:4326 --drop-densest-as-needed \
+tippecanoe -f -z8 --simplify-only-low-zooms --full-detail=24 --visvalingam \
+  --drop-densest-as-needed \
+  --projection=EPSG:4326 \
   -y "id" -y "scale" -y "area" \
   -y "resourceId" -y "resourceType" -y "resourceWidth" -y "resourceHeight" \
   -y "imageServiceDomain" \
