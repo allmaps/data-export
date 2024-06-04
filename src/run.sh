@@ -31,6 +31,12 @@ wget "https://api.allmaps.org/maps?key=$ALLMAPS_API_KEY&limit=-1" \
 cat ./data/maps.json | jq -c '.[]' > ./data/maps.ndjson
 
 # =============================================================================
+# Count image domains
+# =============================================================================
+
+cat ./data/maps.ndjson | ./src/count-domains.sh > ./data/domains-counted.json
+
+# =============================================================================
 # Georeference Annotations
 # =============================================================================
 
