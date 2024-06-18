@@ -7,6 +7,7 @@ jq 'include "./src/map-id"; include "./src/parse-url";
     type: "Feature",
     properties: {
       mapId: .properties._allmaps.id | mapId,
+      modified: (.properties.modified[0:19] + "Z") | fromdate,
       id: .properties._allmaps.id,
       scale: .properties._allmaps.scale,
       area: .properties._allmaps.area,
