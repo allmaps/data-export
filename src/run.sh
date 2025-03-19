@@ -50,9 +50,7 @@ wget "https://annotations.allmaps.org/maps?key=$ALLMAPS_API_KEY&limit=-1" \
 
 ANNOTATIONS_SIZE=$(wc -c < "./data/annotations.json")
 
-if [ $ANNOTATIONS_SIZE -ge $MINIMUM_DOWNLOAD_SIZE ]; then
-  # Everything's fine!
-else
+if [ $ANNOTATIONS_SIZE -gt $MINIMUM_DOWNLOAD_SIZE ]; then
   rm ./data/annotations.json
 fi
 
