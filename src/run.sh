@@ -12,7 +12,7 @@ wget "https://annotations.allmaps.org/maps.geojson?key=$ALLMAPS_API_KEY&limit=-1
 
 GEOJSON_SIZE=$(wc -c < "./data/maps.geojson")
 
-if [ $GEOJSON_SIZE -ge $MINIMUM_DOWNLOAD_SIZE ]; then
+if [ $GEOJSON_SIZE -gt $MINIMUM_DOWNLOAD_SIZE ]; then
   cat ./data/maps.geojson | jq -c '.features[]' > data/maps.geojsonl
 
   ./src/pmtiles.sh
@@ -29,7 +29,7 @@ wget "https://api.allmaps.org/maps?key=$ALLMAPS_API_KEY&limit=-1" \
 
 MAPS_SIZE=$(wc -c < "./data/maps.json")
 
-if [ $MAPS_SIZE -ge $MINIMUM_DOWNLOAD_SIZE ]; then
+if [ $MAPS_SIZE -gt $MINIMUM_DOWNLOAD_SIZE ]; then
   cat ./data/maps.json | jq -c '.[]' > ./data/maps.ndjson
 else
   rm ./data/maps.json
@@ -50,7 +50,7 @@ wget "https://annotations.allmaps.org/maps?key=$ALLMAPS_API_KEY&limit=-1" \
 
 ANNOTATIONS_SIZE=$(wc -c < "./data/annotations.json")
 
-if [ $ANNOTATIONS_SIZE -gt $MINIMUM_DOWNLOAD_SIZE ]; then
+if [ $ANNOTATIONS_SIZE -lt $MINIMUM_DOWNLOAD_SIZE ]; then
   rm ./data/annotations.json
 fi
 
